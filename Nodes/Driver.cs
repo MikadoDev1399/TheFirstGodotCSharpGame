@@ -33,20 +33,7 @@ public class Driver : KinematicBody2D
 		
 	}
 
-	public void ReceivedItem(Item item)
-	{
-		//I'm trying to find way to let the driver hold only one item by hiding the current one before setting the other
-		//Perhaps a better approach to throw current away and then hide it, and get the new one...
-		if (_heldItem != null)
-		{
-			_heldItem.HideSelf();
-			
-		}
-		_heldItem = item;
-		
-
-
-	}
+	public void ReceivedItem(Item item) => _heldItem = item;
 
 	public bool GiveItem(Item orderedItem) => _heldItem == orderedItem;
 }

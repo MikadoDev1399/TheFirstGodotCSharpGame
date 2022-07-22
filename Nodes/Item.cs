@@ -5,6 +5,9 @@ public class Item : Area2D
 {
 	private Sprite _sprite;
 	private CollisionShape2D _shape;
+
+	private static Item _current;
+	
 	public override void _Ready()
 	{
 		_sprite = GetNode<Sprite>(new NodePath("sprite"));
@@ -12,16 +15,16 @@ public class Item : Area2D
 
 	}
 
-	public void HideSelf()
+	private void HideSelf()
 	{
-		_shape.SetDeferred("disabled", true);
-		_sprite.SetDeferred("visible", false);
+		_shape.Disabled = true;
+		_sprite.Visible = false;
 	}
 	
-	public void ShowSelf()
+	private void ShowSelf()
 	{
-		_shape.SetDeferred("disabled", false);
-		_sprite.SetDeferred("visible", true);
+		_shape.Disabled = false;
+		_sprite.Visible = true;
 		
 	}
 	
@@ -35,8 +38,35 @@ private void _on_Item_body_entered(object body)
 {
 	if (!(body is Driver driver)) return;
 
-	driver.ReceivedItem(this);
+	if (_current == null)
+	{
+		driver.ReceivedItem(this);
+		HideSelf();
+		_current = this;
+	}
+	else
+	{
+		
+		if (_current != this)
+		{
+			driver.ReceivedItem(this);
+			_current.ShowSelf();
+			_current.GlobalPosition = driver.GlobalPosition;
+			HideSelf();
+			_current = this;
+		}
+		else
+		{
+			GD.Print("Unknown error: Current item pointer shouldn't be called here! ");
+		}
+		
+	}
 	
+
+	
+	
+
+
 }
 
 }
