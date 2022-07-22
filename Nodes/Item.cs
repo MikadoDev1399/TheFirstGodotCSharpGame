@@ -27,8 +27,16 @@ public class Item : Area2D
 		_sprite.Visible = true;
 		
 	}
-	
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
+
+	public void Destroy()
+	{
+		if (_current == this)
+			_current = null;
+		
+		QueueFree();
+	}
+
+	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
 //      
