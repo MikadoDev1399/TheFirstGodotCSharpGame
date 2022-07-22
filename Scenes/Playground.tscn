@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Nodes/Driver.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Corner 3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Intersection 1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Road 2.png" type="Texture" id=4]
+[ext_resource path="res://Nodes/Item.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Customer.tscn" type="PackedScene" id=6]
+
+[sub_resource type="TileSet" id=22]
+0/name = "Road 2.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 400, 1000 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Corner 3.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 600, 600 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Intersection 1.png 2"
+2/texture = ExtResource( 3 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 1500, 1500 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[node name="Playground" type="Node2D"]
+
+[node name="Roads" type="TileMap" parent="."]
+tile_set = SubResource( 22 )
+format = 1
+tile_data = PoolIntArray( -1769479, -1073741823, 0, -1835006, -1610612736, 0, -1834991, 1, 0, -1179655, 0, 0, -1245164, 0, 0, -196615, 0, 0, -262124, 0, 0, 786425, 0, 0, 720916, 0, 0, 1769465, 1610612737, 0, 1703953, -1610612735, 0, 1900546, -1610612736, 0 )
+
+[node name="Driver" parent="." instance=ExtResource( 1 )]
+position = Vector2( -238, 343 )
+
+[node name="Camera2D" type="Camera2D" parent="Driver"]
+current = true
+
+[node name="Customer" parent="." instance=ExtResource( 6 )]
+position = Vector2( 558, -1605 )
+_itemPath = NodePath("../Item")
+
+[node name="Customer2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1496, -730 )
+_itemPath = NodePath("../Item2")
+
+[node name="Item" parent="." instance=ExtResource( 5 )]
+position = Vector2( -248, -957 )
+
+[node name="Item2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -262.255, -1302.33 )
