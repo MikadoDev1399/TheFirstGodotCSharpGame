@@ -64,9 +64,9 @@ public class Driver : KinematicBody2D
 		base._PhysicsProcess(delta);
 		if (_currentHeldItem != null && _currentTarget != null)
 		{
-			// Rotation is not working as intended. 
+			 
 			_arrowHolder.LookAt(_currentTarget.GlobalPosition);
-
+			_arrowHolder.Rotation += Mathf.Pi/2;
 
 		}
 	}
